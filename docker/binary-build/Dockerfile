@@ -11,4 +11,5 @@ WORKDIR /buildtools
 ENV DOTNET_SKIP_FIRST_TIME_EXPERIENCE true
 
 COPY . .
+
 RUN ./build.sh -v /t:Package
