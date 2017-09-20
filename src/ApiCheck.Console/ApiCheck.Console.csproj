@@ -7,6 +7,7 @@
       on this project.
     -->
     <TargetFrameworks>netcoreapp2.0;net46;netstandard1.0</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp2.0;netstandard1.0</TargetFrameworks>
     <AssemblyName>Microsoft.AspNetCore.BuildTools.ApiCheck</AssemblyName>
     <RootNamespace>Microsoft.AspNetCore.BuildTools.ApiCheck</RootNamespace>
     <IncludeSymbols>false</IncludeSymbols>
