@@ -15,6 +15,6 @@ COPY . .
 
 # Restore in separate layer to reduce incremental build times when
 # restore succeeds but compile fails
-RUN ./build.sh -v /t:Restore
+RUN ./build.sh -v /t:Restore /p:Configuration=ReleaseNoTest
 
-RUN ./build.sh -v /t:Package
+RUN ./build.sh -v /t:Package /p:Configuration=ReleaseNoTest
