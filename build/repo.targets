@@ -73,4 +73,10 @@
     <ZipArchive WorkingDirectory="$(_KoreBuildIntermediateDir)" File="$(_KoreBuildOutDir)korebuild.$(Version).zip" SourceFiles="@(KoreBuildFiles)" />
   </Target>
 
+  <ItemGroup>
+    <Solutions Update="..\BuildTools.sln" Condition="'$(ExcludeTests)' == 'true'">
+      <AdditionalProperties>Configuration=$(Configuration)NoTest</AdditionalProperties>
+    </Solutions>
+  </ItemGroup>
+
 </Project>
