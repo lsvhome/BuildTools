@@ -13,7 +13,7 @@
   </metadata>
   <files>
     <file src="_._" target="lib\netstandard1.0\_._" />
-    <file src="bin\$config$\**\Internal.AspNetCore.Sdk.dll" target="tools" />
+    <file src="bin\$config$\**\Internal.AspNetCore.Sdk.dll" target="tools\" />
     <file src="..\Internal.AspNetCore.BuildTools.Tasks\build\Tasks.tasks" target="build\" />
     <file src="build\" target="build\" />
     <file src="buildMultiTargeting\" target="buildMultiTargeting\" />
