@@ -5,6 +5,7 @@
   <PropertyGroup>
     <Description>Classifies a set of packages from several directories based on information from a csv file</Description>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp2.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
