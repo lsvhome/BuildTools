@@ -18,4 +18,10 @@
     <KoreBuildModule Include="NuGet.Tasks" />
     <KoreBuildModule Include="BuildTools.Tasks" />
   </ItemGroup>
+
+  <ItemGroup Condition="'$(DotNetBuildFromSource)' == 'true'">
+    <ExcludeFromPack Include="$(RepositoryRoot)src\ApiCheck.Console\ApiCheck.Console.csproj" />
+    <ExcludeFromPack Include="$(RepositoryRoot)src\ApiCheck.Task\ApiCheck.Task.csproj" />
+    <ExcludeFromPack Include="$(RepositoryRoot)src\VersionTool\VersionTool.csproj" />
+  </ItemGroup>
 </Project>
