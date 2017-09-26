@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <KoreBuildModule Include="NuGetPackageVerifier" />
+    <KoreBuildModule Include="NuGetPackageVerifier" Condition="'$(DotNetBuildFromSource)' == 'false'"/>
     <KoreBuildModule Include="NuGet.Tasks" />
     <KoreBuildModule Include="BuildTools.Tasks" />
   </ItemGroup>
