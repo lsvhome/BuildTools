@@ -34,7 +34,7 @@ if ($env:KOREBUILD_DOTNET_FEED_CREDENTIAL) {
 
 # This disables automatic rollforward to C:\Program Files\ and other global locations.
 # We want to ensure are tests are running against the exact runtime specified by the project.
-$env:DOTNET_MULTILEVEL_LOOKUP=0
+$env:DOTNET_MULTILEVEL_LOOKUP = 0
 
 <#
 .SYNOPSIS
@@ -69,6 +69,15 @@ function Invoke-RepositoryBuild(
     try {
         Write-Verbose "Building $Path"
         Write-Verbose "dotnet = ${global:dotnet}"
+
+        # Generate global.json to ensure the repo uses the right SDK version
+        $sdkVersion = __get_dotnet_sdk_version
+        if ($sdkVersion -ne 'latest') {
+            "{ `"sdk`": { `"version`": `"$sdkVersion`" } }" | Out-File (Join-Path $Path 'global.json') -Encoding ascii
+        }
+        else {
+            Write-Verbose "Skipping global.json generation because the `$sdkVersion = $sdkVersion"
+        }
 
         $makeFileProj = Join-Paths $PSScriptRoot ('..', 'KoreBuild.proj')
         $msbuildArtifactsDir = Join-Paths $Path ('artifacts', 'logs')
@@ -109,7 +118,7 @@ function Invoke-RepositoryBuild(
             $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = 'true'
         }
         else {
-            $repoTasksArgs = $MSBuildArgs | Where-Object { ($_ -like '-p:*') -or ($_ -like '/p:*')  -or ($_ -like '-property:')  -or ($_ -like '/property:') }
+            $repoTasksArgs = $MSBuildArgs | Where-Object { ($_ -like '-p:*') -or ($_ -like '/p:*') -or ($_ -like '-property:') -or ($_ -like '/property:') }
             __build_task_project $Path $repoTasksArgs
         }
 
